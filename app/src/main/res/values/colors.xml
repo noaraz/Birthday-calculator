@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">@color/syngenta_blue</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">@color/syngenta_green</color>
+
+    <color name="white">@android:color/white</color>
+    <color name="black">#000000</color>
+    <color name="darkGrey">#888888</color>
+    <color name="lighterGrey">#dddddd</color>
+    <color name="lightGrey">#bbbbbb</color>
+    <color name="darkBlue">#004466</color>
+    <color name="lightBlue">#68BEFF</color>
+    <color name="lightBrown">#FFEFDE</color>
+    <color name="transparent">#00000000</color>
+
+    <color name="color_green">@android:color/holo_green_light</color>
+    <color name="color_red">@android:color/holo_red_light</color>
+    <color name="color_purple">@android:color/holo_purple</color>
+    <color name="color_orange">@android:color/holo_orange_light</color>
+    <color name="color_blue">#0033FF</color>
+    <color name="color_blue_light">#68BEFF</color>
+    <color name="color_blue_very_light">#99eeff</color>
+    <color name="syngenta_green">#4CAF50</color>
+    <color name="syngenta_blue">@color/color_blue</color>
+    <color name="syngenta_blue_background">#100033FF</color>
+    <color name="syngenta_green_background">#304CAF50</color>
+
+    <color name="color_black">#FF000000</color>
+    <color name="color_black_faded">#44000000</color>
+</resources>

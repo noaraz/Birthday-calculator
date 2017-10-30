@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Buli</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="select_date_of_birth">Select Date of birth</string>
+    <string name="select_destination_date">Select destination date</string>
+    <string name="select_destination_age">Select destination age</string>
+    <string name="calculate_age_btn">Calculate age</string>
+    <string name="date_format" formatted="false"> %d/%d/%d</string>
+    <string name="age_calculator">Age calculator</string>
+    <string name="hint_day">dd</string>
+    <string name="hint_month">mm</string>
+    <string name="hint_year">yyyy</string>
+    <string name="error_dates_validation">Dates not valid!</string>
+    <string name="today_btn">Today</string>
+    <string name="calculate_birthday_btn">calculate birthday</string>
+    <string name="years">years</string>
+    <string name="months">months</string>
+    <string name="error_bithday_cal_validation">Age fields can not be empty!</string>
+
+</resources>

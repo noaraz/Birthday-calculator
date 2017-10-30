@@ -1,0 +1,868 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    >
+    <data>
+        <import type="android.view.View"/>
+        <import type="net.atomation.buli.models.AgeCalculator" />
+        <import type="net.atomation.buli.utils.Utils"/>
+
+        <variable
+            name="content"
+            type="net.atomation.buli.views.contents.MainActivityContent"
+            />
+
+        <variable
+            name="eventHandler"
+            type="net.atomation.buli.views.MainActivity" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/padding_large"
+        android:layout_marginLeft="@dimen/padding_large"
+        android:layout_marginRight="@dimen/padding_large"
+        android:layout_marginTop="@dimen/padding_large"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_margin="@dimen/spacing_smaller"
+            android:descendantFocusability="beforeDescendants"
+            android:focusableInTouchMode="true"
+            >
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                style="@style/CardView.Section"
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_margin="@dimen/padding_small"                    >
+                    <TextView
+                        android:id="@+id/age_cal_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/age_calculator"
+                        style="@style/Text.SubTitle"
+                        />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="3dp"
+                        android:layout_gravity="center"
+                        style="@style/Line.LightBlue"
+
+                        />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/padding_small"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        >
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:text="@string/select_date_of_birth"
+                            style="@style/Text.EditText"
+                            />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:text="@{Utils.calenderToString(content.ageCalculator.dateOfBirth)}"
+                            tools:text="23/04/1990"
+                            style="@style/Text.EditText"
+                            />
+                        <ImageButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:onClick="@{() -> eventHandler.onSelectDateOfBirthClick()}"
+                            android:background="@drawable/ic_date_range_black_24dp"
+                            />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/padding_small"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        >
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:text="@string/select_destination_date"
+                            style="@style/Text.EditText"
+                            />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:text="@{Utils.calenderToString(content.ageCalculator.destinationDate)}"
+                            tools:text="23/04/1990"
+                            style="@style/Text.EditText"
+                            />
+                        <ImageButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:onClick="@{() -> eventHandler.onSelectDestDateClick()}"
+                            android:background="@drawable/ic_date_range_black_24dp"
+                            />
+                    </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/padding_small"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    >
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/calculate_age_btn"
+                        android:onClick="@{() -> eventHandler.onCalculateAgeClick()}"
+                        android:enabled="@{content.ageCalculator.valid}"
+                        />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:textColor="@color/color_red"
+                        android:text="@{content.ageCalculator.calculatedAge}"
+                        tools:text="20"
+                        style="@style/Text.EditText"
+                        />
+                    <ImageButton
+                        android:layout_width="23dp"
+                        android:layout_height="23dp"
+                        android:background="@drawable/ic_clear_white_24dp"
+                        android:backgroundTint="@color/lighterGrey"
+                        android:onClick="@{() -> eventHandler.onClearAgeClick()}"
+                        android:enabled="@{content.ageCalculator.valid}"
+
+
+                        />
+                </LinearLayout>
+
+
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                style="@style/CardView.Section"
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_margin="@dimen/padding_small"                    >
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Birthday calculator"
+                        style="@style/Text.SubTitle"
+                        />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="3dp"
+                        android:layout_gravity="center"
+                        style="@style/Line.LightBlue"
+
+                        />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/padding_small"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        >
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:text="@string/select_destination_date"
+                            style="@style/Text.EditText"
+                            />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:text="@{Utils.calenderToString(content.birthdayCalculator.destDate)}"
+                            tools:text="23/04/1990"
+                            style="@style/Text.EditText"
+                            />
+                        <ImageButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:onClick="@{() -> eventHandler.onBirthdayCalculatorDestDateClick()}"
+                            android:background="@drawable/ic_date_range_black_24dp"
+                            />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/padding_small"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        >
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1.5"
+                            android:text="@string/select_destination_age"
+                            style="@style/Text.EditText"
+                            />
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:layout_margin="@dimen/padding_small"
+                            android:orientation="horizontal"
+                            android:gravity="center"
+                            >
+
+                            <EditText
+                                android:id="@+id/edt_age_years"
+                                style="@style/Text.EditText"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.5"
+                                android:inputType="numberDecimal"
+                                tools:ignore="LabelFor" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/years"
+                                style="@style/Text.EditText"
+                                />
+
+                            <EditText
+                                android:id="@+id/edt_age_months"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.5"
+                                android:inputType="numberDecimal"
+                                android:text="@{String.valueOf(content.birthdayCalculator.destAge.getMonths())}"
+                                tools:ignore="LabelFor"
+                                style="@style/Text.EditText"
+                                />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/months"
+                                style="@style/Text.EditText"
+                                />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/padding_small"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        >
+                        <Button
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:text="@string/calculate_birthday_btn"
+                            android:onClick="@{() -> eventHandler.onCalculateBirthdayClick()}"
+                            />
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:textColor="@color/color_red"
+                            android:text="@{ content.birthdayCalculator.error != null ? content.birthdayCalculator.error : Utils.calenderToString(content.birthdayCalculator.calculatedBirthday)}"
+                            tools:text="20"
+                            style="@style/Text.EditText"
+                            />
+                        <ImageButton
+                            android:layout_width="23dp"
+                            android:layout_height="23dp"
+                            android:background="@drawable/ic_clear_white_24dp"
+                            android:backgroundTint="@color/lighterGrey"
+                            android:onClick="@{() -> eventHandler.onClearBirthdayClick()}"
+                            />
+                    </LinearLayout>
+
+
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <!--<android.support.v7.widget.CardView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="center"-->
+                <!--style="@style/CardView.Section"-->
+                <!--&gt;-->
+
+                <!--<LinearLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:orientation="vertical"-->
+                    <!--android:gravity="center"-->
+                    <!--android:padding="@dimen/spacing_smaller"-->
+                    <!--&gt;-->
+
+                    <!--<TextView-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="@string/temp_title"-->
+                        <!--style="@style/Text.SubTitle"-->
+                        <!--/>-->
+
+                    <!--<View-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="3dp"-->
+                        <!--android:layout_gravity="center"-->
+                        <!--style="@style/Line.LightBlue"-->
+                        <!--/>-->
+
+                    <!--<LinearLayout-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:orientation="horizontal"-->
+                        <!--android:gravity="center"-->
+                        <!--android:paddingLeft="@dimen/spacing_smaller"-->
+                        <!--android:paddingRight="@dimen/spacing_smaller"-->
+                        <!--android:paddingTop="@dimen/spacing_smaller"-->
+                        <!--&gt;-->
+
+                        <!--<TextView-->
+                            <!--android:layout_width="0dp"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:layout_weight="1"-->
+                            <!--android:text="@string/temp_units_title"-->
+                            <!--style="@style/Text.SubTitle"-->
+                            <!--/>-->
+
+                        <!--<android.support.v7.widget.AppCompatSpinner-->
+                            <!--android:id="@+id/temp_unit_spn"-->
+                            <!--android:layout_width="0dp"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:layout_weight="1"-->
+                            <!--android:clickable='@{!configuration.isWaitingForServer}'-->
+                            <!--android:enabled='@{!configuration.isWaitingForServer}'-->
+                            <!--style="@style/Widget.AppCompat.Spinner.Underlined"-->
+                            <!--/>-->
+                    <!--</LinearLayout>-->
+
+                    <!--<LinearLayout-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:orientation="horizontal"-->
+                        <!--android:gravity="center"-->
+                        <!--android:padding="@dimen/spacing_smaller"-->
+                        <!--&gt;-->
+
+                        <!--<TextView-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:layout_weight="1"-->
+                            <!--android:text="@string/temp_freezing_title"-->
+                            <!--style="@style/Text.SubTitle"-->
+                            <!--/>-->
+
+                        <!--<android.support.design.widget.TextInputLayout-->
+                            <!--android:id="@+id/til_temp_threshold"-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:layout_weight="1"-->
+                            <!--android:hint="@string/hint_temp_threshold"-->
+                            <!--bind:error="@{presenter.content.temperatureThresholdError}"-->
+                            <!--app:errorEnabled="@{presenter.content.temperatureThresholdError != null}"-->
+                            <!--&gt;-->
+
+                            <!--<EditText-->
+                                <!--android:id="@+id/edt_temp_threshold"-->
+                                <!--android:layout_width="match_parent"-->
+                                <!--android:layout_height="wrap_content"-->
+                                <!--android:inputType="numberDecimal|numberSigned"-->
+                                <!--android:text="@{String.format(@string/temp_format ,presenter.content.temperatureThreshold)}"-->
+                                <!--android:enabled='@{!configuration.isWaitingForServer}'-->
+                                <!--android:selectAllOnFocus="true"-->
+                                <!--tools:ignore="LabelFor"-->
+                                <!--style="@style/Text.EditText"-->
+                                <!--/>-->
+                        <!--</android.support.design.widget.TextInputLayout>-->
+                    <!--</LinearLayout>-->
+                <!--</LinearLayout>-->
+            <!--</android.support.v7.widget.CardView>-->
+
+            <!--<android.support.v7.widget.CardView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="center"-->
+                <!--style="@style/CardView.Section"-->
+                <!--&gt;-->
+                <!--<LinearLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:orientation="vertical"-->
+                    <!--android:gravity="center"-->
+                    <!--android:padding="@dimen/spacing_smaller"-->
+                    <!--&gt;-->
+
+                    <!--<TextView-->
+                        <!--android:id="@+id/flood_title"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="@string/flood_title"-->
+                        <!--style="@style/Text.SubTitle"-->
+                        <!--/>-->
+
+                    <!--<View-->
+                        <!--android:id="@+id/flood_title_line"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="3dp"-->
+                        <!--android:layout_gravity="center"-->
+                        <!--style="@style/Line.LightBlue"-->
+                        <!--/>-->
+
+                    <!--<android.support.design.widget.TextInputLayout-->
+                        <!--android:id="@+id/til_flood_wet_threshold"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:hint="@string/hint_flood"-->
+                        <!--bind:error="@{presenter.content.floodWetThresholdError}"-->
+                        <!--app:errorEnabled="@{presenter.content.floodWetThresholdError != null}"-->
+                        <!--&gt;-->
+
+                        <!--<EditText-->
+                            <!--android:id="@+id/edt_flood_wet_threshold"-->
+                            <!--android:layout_width="fill_parent"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:inputType="numberDecimal"-->
+                            <!--android:text="@{String.valueOf(configuration.wetTH)}"-->
+                            <!--android:enabled='@{!configuration.isWaitingForServer}'-->
+                            <!--android:selectAllOnFocus="true"-->
+                            <!--tools:ignore="LabelFor"-->
+                            <!--style="@style/Text.EditText"-->
+                            <!--/>-->
+                    <!--</android.support.design.widget.TextInputLayout>-->
+                <!--</LinearLayout>-->
+            <!--</android.support.v7.widget.CardView>-->
+
+            <!--<android.support.v7.widget.CardView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="center"-->
+                <!--style="@style/CardView.Section"-->
+                <!--&gt;-->
+                <!--<LinearLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:orientation="vertical"-->
+                    <!--android:gravity="center"-->
+                    <!--android:padding="@dimen/spacing_smaller"-->
+                    <!--&gt;-->
+
+                    <!--<TextView-->
+                        <!--android:id="@+id/tv_flood_short_title"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="@string/flood_short_title"-->
+                        <!--style="@style/Text.SubTitle"-->
+                        <!--/>-->
+
+                    <!--<View-->
+                        <!--android:id="@+id/tv_flood_title_line"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="3dp"-->
+                        <!--android:layout_gravity="center"-->
+                        <!--style="@style/Line.LightBlue"-->
+                        <!--/>-->
+
+                    <!--<android.support.design.widget.TextInputLayout-->
+                        <!--android:id="@+id/til_flood_short"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:hint="@string/hint_flood_short"-->
+                        <!--bind:error="@{presenter.content.floodShortThresholdError}"-->
+                        <!--app:errorEnabled="@{presenter.content.floodShortThresholdError != null}"-->
+                        <!--&gt;-->
+
+                        <!--<EditText-->
+                            <!--android:id="@+id/edt_flood_short"-->
+                            <!--android:layout_width="fill_parent"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:inputType="numberDecimal"-->
+                            <!--android:text="@{String.valueOf(configuration.shortTH)}"-->
+                            <!--android:enabled='@{!configuration.isWaitingForServer}'-->
+                            <!--android:selectAllOnFocus="true"-->
+                            <!--tools:ignore="LabelFor"-->
+                            <!--style="@style/Text.EditText"-->
+                            <!--/>-->
+                    <!--</android.support.design.widget.TextInputLayout>-->
+                <!--</LinearLayout>-->
+            <!--</android.support.v7.widget.CardView>-->
+
+            <!--<android.support.v7.widget.CardView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="center"-->
+                <!--style="@style/CardView.Section"-->
+                <!--&gt;-->
+
+                <!--<LinearLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:orientation="vertical"-->
+                    <!--android:gravity="center"-->
+                    <!--android:padding="@dimen/spacing_smaller"-->
+                    <!--&gt;-->
+
+                    <!--<TextView-->
+                        <!--android:id="@+id/tv_flow_title"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="@string/flow_title"-->
+                        <!--style="@style/Text.SubTitle"-->
+                        <!--/>-->
+
+                    <!--<View-->
+                        <!--android:id="@+id/tv_flow_title_line"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="3dp"-->
+                        <!--android:layout_gravity="center"-->
+                        <!--style="@style/Line.LightBlue"-->
+                        <!--/>-->
+
+                    <!--<LinearLayout-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:orientation="horizontal"-->
+                        <!--&gt;-->
+
+                        <!--<android.support.v7.widget.AppCompatSpinner-->
+                            <!--android:id="@+id/flow_alert_period_val_spn"-->
+                            <!--android:layout_width="0dp"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:layout_weight="1"-->
+                            <!--android:clickable='@{!configuration.isWaitingForServer}'-->
+                            <!--android:enabled='@{!configuration.isWaitingForServer}'-->
+                            <!--style="@style/Widget.AppCompat.Spinner.Underlined"/>-->
+
+                        <!--<android.support.v7.widget.AppCompatSpinner-->
+                            <!--android:id="@+id/flow_alert_period_unit_spn"-->
+                            <!--android:layout_width="0dp"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:layout_weight="1"-->
+                            <!--android:clickable='@{!configuration.isWaitingForServer}'-->
+                            <!--android:enabled='@{!configuration.isWaitingForServer}'-->
+                            <!--style="@style/Widget.AppCompat.Spinner.Underlined"-->
+                            <!--/>-->
+                    <!--</LinearLayout>-->
+                <!--</LinearLayout>-->
+            <!--</android.support.v7.widget.CardView>-->
+
+            <!--&lt;!&ndash;<android.support.v7.widget.CardView&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_gravity="center"&ndash;&gt;-->
+            <!--&lt;!&ndash;style="@style/CardView.Section"&ndash;&gt;-->
+            <!--&lt;!&ndash;&gt;&ndash;&gt;-->
+            <!--&lt;!&ndash;<LinearLayout&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:orientation="vertical"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:gravity="center"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:padding="@dimen/spacing_smaller"&ndash;&gt;-->
+            <!--&lt;!&ndash;&gt;&ndash;&gt;-->
+
+            <!--&lt;!&ndash;<TextView&ndash;&gt;-->
+            <!--&lt;!&ndash;android:id="@+id/tv_flow_title"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:text="@string/flow_title"&ndash;&gt;-->
+            <!--&lt;!&ndash;style="@style/Text.SubTitle"&ndash;&gt;-->
+            <!--&lt;!&ndash;/>&ndash;&gt;-->
+
+            <!--&lt;!&ndash;<View&ndash;&gt;-->
+            <!--&lt;!&ndash;android:id="@+id/tv_flow_title_line"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_height="3dp"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_gravity="center"&ndash;&gt;-->
+            <!--&lt;!&ndash;style="@style/Line.LightBlue"&ndash;&gt;-->
+            <!--&lt;!&ndash;/>&ndash;&gt;-->
+
+            <!--&lt;!&ndash;<android.support.design.widget.TextInputLayout&ndash;&gt;-->
+            <!--&lt;!&ndash;android:id="@+id/til_flow"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:hint="@string/hint_flow"&ndash;&gt;-->
+            <!--&lt;!&ndash;bind:error="@{presenter.content.flowThresholdError}"&ndash;&gt;-->
+            <!--&lt;!&ndash;app:errorEnabled="@{presenter.content.flowThresholdError != null}"&ndash;&gt;-->
+            <!--&lt;!&ndash;&gt;&ndash;&gt;-->
+
+            <!--&lt;!&ndash;<EditText&ndash;&gt;-->
+            <!--&lt;!&ndash;android:id="@+id/edt_flow"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_width="fill_parent"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:inputType="numberDecimal"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:text="@{String.valueOf(configuration.flowTH)}"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:enabled='@{!configuration.isWaitingForServer}'&ndash;&gt;-->
+            <!--&lt;!&ndash;android:selectAllOnFocus="true"&ndash;&gt;-->
+            <!--&lt;!&ndash;tools:ignore="LabelFor"&ndash;&gt;-->
+            <!--&lt;!&ndash;style="@style/Text.EditText"&ndash;&gt;-->
+            <!--&lt;!&ndash;/>&ndash;&gt;-->
+            <!--&lt;!&ndash;</android.support.design.widget.TextInputLayout>&ndash;&gt;-->
+            <!--&lt;!&ndash;</LinearLayout>&ndash;&gt;-->
+            <!--&lt;!&ndash;</android.support.v7.widget.CardView>&ndash;&gt;-->
+
+            <!--<android.support.v7.widget.CardView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="center"-->
+                <!--style="@style/CardView.Section"-->
+                <!--&gt;-->
+                <!--<LinearLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:orientation="vertical"-->
+                    <!--android:gravity="center"-->
+                    <!--android:padding="@dimen/spacing_smaller"-->
+                    <!--&gt;-->
+
+                    <!--<TextView-->
+                        <!--android:id="@+id/tv_pressure_title"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="@string/pressure_title"-->
+                        <!--style="@style/Text.SubTitle"-->
+                        <!--/>-->
+
+                    <!--<View-->
+                        <!--android:id="@+id/tv_pressure_title_line"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="3dp"-->
+                        <!--android:layout_gravity="center"-->
+                        <!--style="@style/Line.LightBlue"-->
+                        <!--/>-->
+
+                    <!--<android.support.design.widget.TextInputLayout-->
+                        <!--android:id="@+id/til_pressure"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:hint="@string/hint_pressure"-->
+                        <!--bind:error="@{presenter.content.pressureThresholdError}"-->
+                        <!--app:errorEnabled="@{presenter.content.pressureThresholdError != null}"-->
+                        <!--&gt;-->
+
+                        <!--<EditText-->
+                            <!--android:id="@+id/edt_pressure"-->
+                            <!--android:layout_width="fill_parent"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:inputType="numberDecimal"-->
+                            <!--android:text="@{String.valueOf(configuration.pressureTH)}"-->
+                            <!--android:enabled='@{!configuration.isWaitingForServer}'-->
+                            <!--android:selectAllOnFocus="true"-->
+                            <!--tools:ignore="LabelFor"-->
+                            <!--style="@style/Text.EditText"-->
+                            <!--/>-->
+                    <!--</android.support.design.widget.TextInputLayout>-->
+                <!--</LinearLayout>-->
+            <!--</android.support.v7.widget.CardView>-->
+
+            <!--<android.support.v7.widget.CardView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="center"-->
+                <!--style="@style/CardView.Section"-->
+                <!--&gt;-->
+
+                <!--<LinearLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:orientation="vertical"-->
+                    <!--android:gravity="center"-->
+                    <!--android:padding="@dimen/spacing_smaller"-->
+                    <!--&gt;-->
+
+                    <!--<TextView-->
+                        <!--android:id="@+id/alert_contact_title"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="@string/alert_contact"-->
+                        <!--style="@style/Text.SubTitle"-->
+                        <!--/>-->
+
+                    <!--<View-->
+                        <!--android:id="@+id/alert_contact_title_line"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="3dp"-->
+                        <!--android:layout_gravity="center"-->
+                        <!--style="@style/Line.LightBlue"-->
+                        <!--/>-->
+
+                    <!--<LinearLayout-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:orientation="horizontal"-->
+                        <!--android:gravity="center"-->
+                        <!--&gt;-->
+
+                        <!--<android.support.design.widget.TextInputLayout-->
+                            <!--android:id="@+id/contact_input_layout"-->
+                            <!--android:layout_width="0dp"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:layout_weight="3"-->
+                            <!--bind:error="@{presenter.content.contactPhoneError}"-->
+                            <!--app:errorEnabled="@{presenter.content.contactPhoneError != null}"-->
+                            <!--&gt;-->
+
+                            <!--<EditText-->
+                                <!--android:id="@+id/edt_contact_phone"-->
+                                <!--android:layout_width="match_parent"-->
+                                <!--android:layout_height="wrap_content"-->
+                                <!--android:inputType="phone"-->
+                                <!--android:text='@{configuration.tempSmsContact == null ? "" : configuration.tempSmsContact.phone}'-->
+                                <!--android:enabled='@{!configuration.isWaitingForServer}'-->
+                                <!--android:selectAllOnFocus="true"-->
+                                <!--tools:ignore="LabelFor"-->
+                                <!--style="@style/Text.EditText"-->
+                                <!--/>-->
+                        <!--</android.support.design.widget.TextInputLayout>-->
+
+                        <!--<ImageView-->
+                            <!--android:id="@+id/button_pick_contact"-->
+                            <!--android:layout_width="0dp"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:layout_weight="1"-->
+                            <!--android:src="@drawable/ic_person_add_white_24dp"-->
+                            <!--android:tint="@color/darkBlue"-->
+                            <!--android:contentDescription="@null"-->
+                            <!--android:onClick="@{() -> presenter.onPickPhoneContactClick()}"-->
+                            <!--android:clickable='@{!configuration.isWaitingForServer}'-->
+                            <!--style="@style/Button"-->
+                            <!--/>-->
+                    <!--</LinearLayout>-->
+                <!--</LinearLayout>-->
+            <!--</android.support.v7.widget.CardView>-->
+
+            <!--<android.support.v7.widget.CardView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="center"-->
+                <!--style="@style/CardView.Section"-->
+                <!--&gt;-->
+
+                <!--<LinearLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:orientation="vertical"-->
+                    <!--android:gravity="center"-->
+                    <!--android:padding="@dimen/spacing_smaller"-->
+                    <!--&gt;-->
+
+                    <!--<TextView-->
+                        <!--android:id="@+id/alert_mail_contact_title"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="@string/alert_mail_contact"-->
+                        <!--style="@style/Text.SubTitle"-->
+                        <!--/>-->
+
+                    <!--<View-->
+                        <!--android:id="@+id/alert_mail_contact_title_line"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="3dp"-->
+                        <!--android:layout_gravity="center"-->
+                        <!--style="@style/Line.LightBlue"-->
+                        <!--/>-->
+
+                    <!--<LinearLayout-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:orientation="horizontal"-->
+                        <!--android:gravity="center"-->
+                        <!--&gt;-->
+
+                        <!--<android.support.design.widget.TextInputLayout-->
+                            <!--android:id="@+id/mail_contact_input_layout"-->
+                            <!--android:layout_width="0dp"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:layout_weight="3"-->
+                            <!--bind:error="@{presenter.content.contactMailError}"-->
+                            <!--app:errorEnabled="@{presenter.content.contactMailError != null}"-->
+                            <!--&gt;-->
+
+                            <!--<EditText-->
+                                <!--android:id="@+id/edt_contact_mail"-->
+                                <!--android:layout_width="match_parent"-->
+                                <!--android:layout_height="wrap_content"-->
+                                <!--android:inputType="textEmailAddress"-->
+                                <!--android:text='@{configuration.tempEmailContact == null ? "" : configuration.tempEmailContact.mail}'-->
+                                <!--android:enabled='@{!configuration.isWaitingForServer}'-->
+                                <!--android:selectAllOnFocus="true"-->
+                                <!--tools:ignore="LabelFor"-->
+                                <!--style="@style/Text.EditText"-->
+                                <!--/>-->
+                        <!--</android.support.design.widget.TextInputLayout>-->
+
+                        <!--<ImageView-->
+                            <!--android:id="@+id/button_pick_mail_contact"-->
+                            <!--android:layout_width="0dp"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:layout_weight="1"-->
+                            <!--android:src="@drawable/ic_person_add_white_24dp"-->
+                            <!--android:tint="@color/darkBlue"-->
+                            <!--android:contentDescription="@null"-->
+                            <!--android:onClick="@{() -> presenter.onPickMailContactClick()}"-->
+                            <!--android:clickable='@{!configuration.isWaitingForServer}'-->
+                            <!--style="@style/Button"-->
+                            <!--/>-->
+                    <!--</LinearLayout>-->
+                <!--</LinearLayout>-->
+            <!--</android.support.v7.widget.CardView>-->
+
+            <!--<Button-->
+                <!--android:id="@+id/button_save_settings"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="@string/save_settings"-->
+                <!--android:enabled='@{!configuration.isWaitingForServer}'-->
+                <!--android:onClick="@{() -> presenter.onSaveSettingsClick()}"-->
+                <!--android:textColor="@color/watercopLightBlue"-->
+                <!--/>-->
+        </LinearLayout>
+        <!--</LinearLayout>-->
+    </ScrollView>
+</layout>
